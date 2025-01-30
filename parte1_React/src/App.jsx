@@ -5,31 +5,46 @@ cuando el component es tan corto se puede usar el oneLiner
 const Header = ({course}) => <h1>{course}</h1>
 */
 const Header = (props) => {
-  return <h1>{props.course}</h1>
+  return <h1>{props.course.name}</h1>
 }
 const Content = (props) => {
-  return <p>{props.part} {props.ejercicios}</p>
+  console.log(props)
+  return (
+    <div>
+      <p>{props.course.parts[0].name} {props.course.parts[0].exercises}</p>
+      <p>{props.course.parts[1].name} {props.course.parts[1].exercises}</p>
+      <p>{props.course.parts[2].name} {props.course.parts[2].exercises}</p>
+    </div>)
 }
 const Total = (props) => {
-  return <p>Number of exercises {props.e1 + props.e2 + props.e3}</p>
+  return (
+    <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>)
 }
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <div>
-      <Header course={course}>  </Header>
-      <Content part={part1} ejercicios={exercises1}></Content>
-      <Content part={part2} ejercicios={exercises2}></Content>
-      <Content part={part3} ejercicios={exercises3}></Content>
-      <Total e1={exercises1} e2={exercises2} e3={exercises3}></Total>
+      <Header course={course}></Header>
+      <Content course={course}></Content>
+      <Total course={course}></Total>
     </div>
   )
 }
