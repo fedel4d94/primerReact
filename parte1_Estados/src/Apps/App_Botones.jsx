@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import "./css/Button.css"
+import "../Apps/Button.css"
 
 /** Separar distintas funciones en simples componentes es una muy buena practica */
 const Display = ({ counter }) => <div>{counter}</div>
